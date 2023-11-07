@@ -11,7 +11,7 @@ export class TarefasService {
   ) {}
 
   findAll(): Promise<Tarefa[]> {
-    return this.tarefasRepository.find({ relations: ['usuarios', 'servicos'] });
+    return this.tarefasRepository.find({ relations: ['usuario', 'servico'] });
   }
 
   findOne(id: string): Promise<Tarefa> {
@@ -30,7 +30,7 @@ export class TarefasService {
     await this.tarefasRepository.update(id, tarefaData);
     return this.tarefasRepository.findOne({
       where: { id },
-      relations: ['usuarios', 'servicos'],
+      relations: ['usuario', 'servico'],
     });
   }
 

@@ -7,7 +7,7 @@ import {
 import { IsEmail, Length } from 'class-validator';
 
 @Entity('usuarios')
-export class User {
+export class Usuario {
   @PrimaryGeneratedColumn('uuid') // Isso irá gerar um UUID para cada usuário automaticamente
   id: string;
 

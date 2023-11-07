@@ -7,33 +7,33 @@ import {
   Body,
   Param,
 } from '@nestjs/common';
-import { UsersService } from './users.service';
-import { User } from './user.entity';
+import { UsuarioService } from './users.service';
+import { Usuario } from './user.entity';
 
 @Controller('users')
-export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+export class UsuarioController {
+  constructor(private readonly usersService: UsuarioService) {}
 
   @Post()
-  async create(@Body() userData: User): Promise<User> {
+  async create(@Body() userData: Usuario): Promise<Usuario> {
     return this.usersService.create(userData);
   }
 
   @Get()
-  async findAll(): Promise<User[]> {
+  async findAll(): Promise<Usuario[]> {
     return this.usersService.findAll();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: number): Promise<User> {
+  async findOne(@Param('id') id: number): Promise<Usuario> {
     return this.usersService.findOne(id);
   }
 
   @Put(':id')
   async update(
     @Param('id') id: number,
-    @Body() userData: Partial<User>,
-  ): Promise<User> {
+    @Body() userData: Partial<Usuario>,
+  ): Promise<Usuario> {
     return this.usersService.update(id, userData);
   }
 

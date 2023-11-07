@@ -6,7 +6,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { User } from '../users/user.entity'; // Assumindo que você já tem uma entidade Usuario
+import { Usuario } from '../users/user.entity'; // Assumindo que você já tem uma entidade Usuario
 import { Servico } from '../servicos/servico.entity'; // Assumindo que você já tem uma entidade Servico
 
 @Entity('tarefas')
@@ -14,9 +14,9 @@ export class Tarefa {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => Usuario)
   @JoinColumn({ name: 'id_usuario' })
-  usuario: User;
+  usuario: Usuario;
 
   @ManyToOne(() => Servico)
   @JoinColumn({ name: 'id_servico' })
