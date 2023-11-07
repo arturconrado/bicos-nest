@@ -2,10 +2,17 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersController } from './users/users.controller';
 import { UsersModule } from './users/users.module';
-import { JwtModule } from "@nestjs/jwt";
-import { PassportModule } from "@nestjs/passport";
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import { TarefasModule } from './tarefas/tarefas.module';
+import { ServicosModule } from './servicos/servicos.module';
+import { Servico } from "./servicos/servico.entity";
+import { Tarefa } from "./tarefas/tarefa.entity";
+
+function Usuario() {
+
+}
 
 @Module({
   imports: [
@@ -17,7 +24,8 @@ import { PassportModule } from "@nestjs/passport";
       password: 'Aqwe123!@',
       database: 'bicos',
       autoLoadEntities: true,
-      synchronize: true, // Not recommended for production
+      entities: [Tarefa, Usuario, Servico],
+      synchronize: false, // Not recommended for production
     }),
     UsersModule,
     PassportModule,
@@ -25,8 +33,10 @@ import { PassportModule } from "@nestjs/passport";
       secret: 'artur',
       signOptions: { expiresIn: '60s' },
     }),
+    TarefasModule,
+    ServicosModule,
   ],
-  controllers: [AppController, UsersController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
