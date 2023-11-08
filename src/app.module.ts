@@ -9,6 +9,11 @@ import { TarefasModule } from './tarefas/tarefas.module';
 import { ServicosModule } from './servicos/servicos.module';
 import { Servico } from './servicos/servico.entity';
 import { Tarefa } from './tarefas/tarefa.entity';
+import { CategoriaModule } from './categoria/categoria.module';
+import { Categoria } from "./categoria/entities/categoria.entity";
+import { PagamentosModule } from './pagamentos/pagamentos.module';
+import { AvaliacoesModule } from './avaliacoes/avaliacoes.module';
+import { AgendamentosModule } from './agendamentos/agendamentos.module';
 
 function Usuario() {}
 
@@ -22,7 +27,7 @@ function Usuario() {}
       password: 'Aqwe123!@',
       database: 'bicos',
       autoLoadEntities: true,
-      entities: [Tarefa, Usuario, Servico],
+      entities: [Tarefa, Usuario, Servico, Categoria],
       synchronize: false, // Not recommended for production
     }),
     UsuarioModule,
@@ -33,6 +38,10 @@ function Usuario() {}
     }),
     TarefasModule,
     ServicosModule,
+    CategoriaModule,
+    PagamentosModule,
+    AvaliacoesModule,
+    AgendamentosModule,
   ],
   controllers: [AppController],
   providers: [AppService],
