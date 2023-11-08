@@ -10,10 +10,13 @@ import { ServicosModule } from './servicos/servicos.module';
 import { Servico } from './servicos/servico.entity';
 import { Tarefa } from './tarefas/tarefa.entity';
 import { CategoriaModule } from './categoria/categoria.module';
-import { Categoria } from "./categoria/entities/categoria.entity";
+import { Categoria } from './categoria/entities/categoria.entity';
 import { PagamentosModule } from './pagamentos/pagamentos.module';
 import { AvaliacoesModule } from './avaliacoes/avaliacoes.module';
 import { AgendamentosModule } from './agendamentos/agendamentos.module';
+import { Pagamento } from './pagamentos/entities/pagamento.entity';
+import { Avaliacao } from './avaliacoes/entities/avaliacoe.entity';
+import { Agendamento } from './agendamentos/entities/agendamento.entity';
 
 function Usuario() {}
 
@@ -27,7 +30,15 @@ function Usuario() {}
       password: 'Aqwe123!@',
       database: 'bicos',
       autoLoadEntities: true,
-      entities: [Tarefa, Usuario, Servico, Categoria],
+      entities: [
+        Tarefa,
+        Usuario,
+        Servico,
+        Categoria,
+        Pagamento,
+        Avaliacao,
+        Agendamento,
+      ],
       synchronize: false, // Not recommended for production
     }),
     UsuarioModule,

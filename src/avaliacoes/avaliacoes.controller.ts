@@ -1,38 +1,34 @@
-import { Controller } from '@nestjs/common';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
 import { AvaliacoesService } from './avaliacoes.service';
 import { CreateAvaliacaoDto } from './dto/create-avaliacao.dto';
 import { UpdateAvaliacaoDto } from './dto/update-avaliacoe.dto';
 
-@Controller()
+@Controller('avaliacoes')
 export class AvaliacoesController {
   constructor(private readonly avaliacoesService: AvaliacoesService) {}
 
-  @MessagePattern('createAvaliacoe')
-  create(@Payload() createAvaliacoeDto: CreateAvaliacaoDto) {
-    return this.avaliacoesService.create(createAvaliacoeDto);
+  @Post()
+  create(@Body() createAvaliacaoDto: CreateAvaliacaoDto) {
+    return this.avaliacoesService.create(createAvaliacaoDto);
   }
 
-  @MessagePattern('findAllAvaliacoes')
+  @Get()
   findAll() {
     return this.avaliacoesService.findAll();
   }
 
-  @MessagePattern('findOneAvaliacoe')
-  findOne(@Payload() id: number) {
+  @Get(':id')
+  findOne(@Param('id') id: number) {
     return this.avaliacoesService.findOne(id);
   }
 
-  @MessagePattern('updateAvaliacoe')
-  update(@Payload() updateAvaliacoeDto: UpdateAvaliacaoDto) {
-    return this.avaliacoesService.update(
-      updateAvaliacoeDto.id,
-      updateAvaliacoeDto,
-    );
+  @Put(':id')
+  update(@Param('id') id: number, @Body() updateAvaliacaoDto: UpdateAvaliacaoDto) {
+    return this.avaliacoesService.update(id, updateAvaliacaoDto);
   }
 
-  @MessagePattern('removeAvaliacoe')
-  remove(@Payload() id: number) {
+  @Delete(':id')
+  remove(@Param('id') id: number) {
     return this.avaliacoesService.remove(id);
   }
 }

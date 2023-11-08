@@ -1,35 +1,34 @@
-import { Controller } from '@nestjs/common';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
 import { AgendamentosService } from './agendamentos.service';
 import { CreateAgendamentoDto } from './dto/create-agendamento.dto';
 import { UpdateAgendamentoDto } from './dto/update-agendamento.dto';
 
-@Controller()
+@Controller('agendamentos')
 export class AgendamentosController {
   constructor(private readonly agendamentosService: AgendamentosService) {}
 
-  @MessagePattern('createAgendamento')
-  create(@Payload() createAgendamentoDto: CreateAgendamentoDto) {
+  @Post()
+  create(@Body() createAgendamentoDto: CreateAgendamentoDto) {
     return this.agendamentosService.create(createAgendamentoDto);
   }
 
-  @MessagePattern('findAllAgendamentos')
+  @Get()
   findAll() {
     return this.agendamentosService.findAll();
   }
 
-  @MessagePattern('findOneAgendamento')
-  findOne(@Payload() id: number) {
+  @Get(':id')
+  findOne(@Param('id') id: number) {
     return this.agendamentosService.findOne(id);
   }
 
-  @MessagePattern('updateAgendamento')
-  update(@Payload() updateAgendamentoDto: UpdateAgendamentoDto) {
-    return this.agendamentosService.update(updateAgendamentoDto.id, updateAgendamentoDto);
+  @Put(':id')
+  update(@Param('id') id: number, @Body() updateAgendamentoDto: UpdateAgendamentoDto) {
+    return this.agendamentosService.update(id, updateAgendamentoDto);
   }
 
-  @MessagePattern('removeAgendamento')
-  remove(@Payload() id: number) {
+  @Delete(':id')
+  remove(@Param('id') id: number) {
     return this.agendamentosService.remove(id);
   }
 }

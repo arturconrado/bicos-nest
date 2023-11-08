@@ -1,38 +1,34 @@
-import { Controller } from '@nestjs/common';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
 import { PagamentosService } from './pagamentos.service';
 import { CreatePagamentoDto } from './dto/create-pagamento.dto';
 import { UpdatePagamentoDto } from './dto/update-pagamento.dto';
 
-@Controller()
+@Controller('pagamentos')
 export class PagamentosController {
   constructor(private readonly pagamentosService: PagamentosService) {}
 
-  @MessagePattern('createPagamento')
-  create(@Payload() createPagamentoDto: CreatePagamentoDto) {
+  @Post()
+  create(@Body() createPagamentoDto: CreatePagamentoDto) {
     return this.pagamentosService.create(createPagamentoDto);
   }
 
-  @MessagePattern('findAllPagamentos')
+  @Get()
   findAll() {
     return this.pagamentosService.findAll();
   }
 
-  @MessagePattern('findOnePagamento')
-  findOne(@Payload() id: number) {
+  @Get(':id')
+  findOne(@Param('id') id: number) {
     return this.pagamentosService.findOne(id);
   }
 
-  @MessagePattern('updatePagamento')
-  update(@Payload() updatePagamentoDto: UpdatePagamentoDto) {
-    return this.pagamentosService.update(
-      updatePagamentoDto.id,
-      updatePagamentoDto,
-    );
+  @Put(':id')
+  update(@Param('id') id: number, @Body() updatePagamentoDto: UpdatePagamentoDto) {
+    return this.pagamentosService.update(id, updatePagamentoDto);
   }
 
-  @MessagePattern('removePagamento')
-  remove(@Payload() id: number) {
+  @Delete(':id')
+  remove(@Param('id') id: number) {
     return this.pagamentosService.remove(id);
   }
 }
