@@ -29,6 +29,11 @@ export class UsuarioController {
     return this.usersService.findOne(id);
   }
 
+  @Get(':id')
+  async findByEmail(@Param('id') id: number): Promise<Usuario> {
+    return this.usersService.findOne(id);
+  }
+
   @Put(':id')
   async update(
     @Param('id') id: number,

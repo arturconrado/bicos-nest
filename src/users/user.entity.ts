@@ -4,7 +4,12 @@ import {
   Column,
   CreateDateColumn,
 } from 'typeorm';
-import { IsEmail, Length } from 'class-validator';
+import { IsEmail, IsEnum, Length } from 'class-validator';
+
+export enum TipoUsuario {
+  Cliente = 'Cliente',
+  Prestador = 'Prestador',
+}
 
 @Entity('usuarios')
 export class Usuario {
@@ -25,8 +30,13 @@ export class Usuario {
   @Column()
   telefone: string;
 
-  @Column()
-  tipo: string;
+  @IsEnum(TipoUsuario)
+  @Column({
+    type: 'enum',
+    enum: TipoUsuario,
+    default: TipoUsuario.Cliente,
+  })
+  tipo: TipoUsuario;
 
   @CreateDateColumn({ type: 'timestamp' })
   criado_em: Date;
