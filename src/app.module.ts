@@ -44,7 +44,7 @@ function Usuario() {}
     UsuarioModule,
     PassportModule,
     JwtModule.register({
-      secret: 'artur',
+      secret: 'l+8f7PWrL0+HuZqBn9DV3Tq/PVFdjA/axGiD/+jbEf8=',
       signOptions: { expiresIn: '60s' },
     }),
     TarefasModule,
