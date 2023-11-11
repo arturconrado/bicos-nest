@@ -24,9 +24,9 @@ function Usuario() {}
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: '192.168.3.101',
+      host: '162.240.236.52',
       port: 5432,
-      username: 'postgres',
+      username: 'artur',
       password: 'Aqwe123!@',
       database: 'bicos',
       autoLoadEntities: true,
