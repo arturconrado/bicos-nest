@@ -17,8 +17,8 @@ import { AgendamentosModule } from './agendamentos/agendamentos.module';
 import { Pagamento } from './pagamentos/entities/pagamento.entity';
 import { Avaliacao } from './avaliacoes/entities/avaliacoe.entity';
 import { Agendamento } from './agendamentos/entities/agendamento.entity';
-
-function Usuario() {}
+import { AuthModule } from './auth/auth.module';
+import { Usuario } from './users/user.entity';
 
 @Module({
   imports: [
@@ -53,6 +53,7 @@ function Usuario() {}
     PagamentosModule,
     AvaliacoesModule,
     AgendamentosModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

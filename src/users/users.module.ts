@@ -10,5 +10,6 @@ import { Usuario } from './user.entity'; // Importe a entidade
   ],
   controllers: [UsuarioController], // Adicione o controlador
   providers: [UsuarioService],
+  exports: [UsuarioService],
 })
 export class UsuarioModule {}

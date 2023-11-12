@@ -1,4 +1,4 @@
-// auth.controller.ts
+// src/auth/auth.controller.ts
 import { Controller, Request, Post, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './local-auth.guard';
