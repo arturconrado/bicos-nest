@@ -24,9 +24,9 @@ import { Usuario } from './users/user.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: '192.168.3.101',
+      host: '162.240.236.52',
       port: 5432,
-      username: 'postgres',
+      username: 'artur',
       password: 'Aqwe123!@',
       database: 'bicos',
       autoLoadEntities: true,
@@ -44,7 +44,7 @@ import { Usuario } from './users/user.entity';
     UsuarioModule,
     PassportModule,
     JwtModule.register({
-      secret: 'artur',
+      secret: 'l+8f7PWrL0+HuZqBn9DV3Tq/PVFdjA/axGiD/+jbEf8=',
       signOptions: { expiresIn: '60s' },
     }),
     TarefasModule,
